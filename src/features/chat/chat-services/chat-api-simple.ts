@@ -31,9 +31,10 @@ export const ChatAPISimple = async (props: PromptGPTProps) => {
     azureOpenAIApiDeploymentName: transformGPTModel(
       chatThread.chatModel
   ),
+    modelName: transformGPTModel(chatThread.chatModel),
     streaming: true,
   });
-
+  
   const memory = new BufferWindowMemory({
     k: 100,
     returnMessages: true,
