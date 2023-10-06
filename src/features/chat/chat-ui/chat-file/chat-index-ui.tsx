@@ -1,17 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { FC, useState, useEffect } from "react";
 import { useChatContext } from "../chat-context";
-import IndexList from "./index-maker"
+
+// make an api call to api/indexes with a Request object
+
+
+
 
 export const ChatIndexUI: FC = () => {
- 
+    const url = "/api/indexes";
+    const request = new Request(url, {
+    method: "GET",
+    });
+    const [indexes, setIndexes] = useState<string[]>([]);
+    useEffect(() => {
+        fetch(request)
+        .then((response) => {
+            if (!response.ok) {
+            throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            setIndexes(data);
+        })
+        .catch((error) => {
+            console.error("There was a problem with the fetch operation:", error);
+        });
+    }, []);
 
-  
-  const options = [
-    { value: "HRDOCS", label: "HR Documents" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
-  ];
+
+
+    const options = indexes.map((index) => ({ value: index, label: index }));
  
     const { id } = useChatContext();
 
