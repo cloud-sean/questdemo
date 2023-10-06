@@ -1,5 +1,5 @@
 import { Message } from "ai";
-import { ChatMessageModel, ConversationStyle } from "./models";
+import { ChatMessageModel, ConversationStyle, ChatModel } from "./models";
 
 export const transformCosmosToAIModel = (
   chats: Array<ChatMessageModel>
@@ -26,6 +26,19 @@ export const transformConversationStyleToTemperature = (
       return 1;
     default:
       return 0.5;
+  }
+};
+
+export const transformGPTModel = (
+  chatModel: ChatModel
+) => {
+  switch (chatModel) {
+    case "gpt-3.5":
+      return "gpt-35-turbo";
+    case "gpt-4":
+      return "gpt-4";
+    default:
+      return "gpt-4";
   }
 };
 

@@ -12,6 +12,7 @@ import {
   ChatThreadModel,
   ChatType,
   ConversationStyle,
+  ChatModel,
   PromptGPTProps,
 } from "./models";
 import { FindAllChatDocuments, DeleteDocuments } from "./chat-document-service";
@@ -147,6 +148,7 @@ export const updateChatThreadTitle = async (
   messages: ChatMessageModel[],
   chatType: ChatType,
   conversationStyle: ConversationStyle,
+  chatModel: ChatModel,
   chatOverFileName: string,
   userMessage: string
 ) => {
@@ -156,7 +158,9 @@ export const updateChatThreadTitle = async (
       chatType: chatType,
       chatOverFileName: chatOverFileName,
       conversationStyle: conversationStyle,
+      chatModel: chatModel,
       name: userMessage.substring(0, 30),
+      
     });
 
     return updatedChatThread.resource!;
@@ -175,6 +179,7 @@ export const CreateChatThread = async () => {
     isDeleted: false,
     chatType: "simple",
     conversationStyle: "precise",
+    chatModel: "gpt-3.5",
     type: CHAT_THREAD_ATTRIBUTE,
     chatOverFileName: ""
   };
@@ -185,7 +190,7 @@ export const CreateChatThread = async () => {
 };
 
 export const initAndGuardChatSession = async (props: PromptGPTProps) => {
-  const { messages, id, chatType, conversationStyle, chatOverFileName } = props;
+  const { messages, id, chatType, conversationStyle, chatOverFileName , chatModel} = props;
 
   //last message
   const lastHumanMessage = messages[messages.length - 1];
@@ -198,6 +203,7 @@ export const initAndGuardChatSession = async (props: PromptGPTProps) => {
     chats,
     chatType,
     conversationStyle,
+    chatModel,
     chatOverFileName,
     lastHumanMessage.content
   );

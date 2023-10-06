@@ -5,6 +5,10 @@ const nextConfig = {
     serverActions: true,
     serverActionsBodySizeLimit: "22mb",
   },
+
 };
 
-module.exports = nextConfig;
+
+module.exports = nextConfig
+
+

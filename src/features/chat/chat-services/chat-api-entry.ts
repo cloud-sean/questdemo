@@ -9,6 +9,7 @@ export const chatAPIEntry = async (props: PromptGPTProps) => {
     return await ChatAPIData(props);
   } else if (props.chatType === "mssql") {
     return await ChatAPIData(props);
+    
   } else {
     return await ChatAPISimple(props);
   }

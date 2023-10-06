@@ -15,6 +15,7 @@ import { insertPromptAndResponse } from "./chat-service";
 import { initAndGuardChatSession } from "./chat-thread-service";
 import { FaqDocumentIndex, PromptGPTProps } from "./models";
 import { transformConversationStyleToTemperature } from "./utils";
+import { transformGPTModel } from "./utils";
 
 export const ChatAPIData = async (props: PromptGPTProps) => {
   const { lastHumanMessage, id, chatThread } = await initAndGuardChatSession(
@@ -25,6 +26,10 @@ export const ChatAPIData = async (props: PromptGPTProps) => {
     temperature: transformConversationStyleToTemperature(
       chatThread.conversationStyle
     ),
+    azureOpenAIApiDeploymentName: transformGPTModel(
+      chatThread.chatModel
+  ),
+
     streaming: true,
   });
 

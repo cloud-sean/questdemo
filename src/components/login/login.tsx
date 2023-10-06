@@ -17,7 +17,7 @@ export const LogIn = () => {
       <CardHeader className="gap-2">
         <CardTitle className="text-2xl flex gap-2">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={"ai-icon.png"} />
+            <AvatarImage src={"DGX.png"} />
           </Avatar>
           <span className="text-primary">{AI_NAME}</span>
         </CardTitle>
@@ -26,7 +26,6 @@ export const LogIn = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <Button onClick={() => signIn("github")}>GitHub</Button>
         <Button onClick={() => signIn("azure-ad")}> Microsoft 365</Button>
         {process.env.NODE_ENV === "development" && (
           <Button onClick={() => signIn("localdev")}>Basic Auth (DEV ONLY)</Button>

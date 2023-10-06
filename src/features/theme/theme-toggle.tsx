@@ -9,7 +9,7 @@ export function ThemeToggle() {
   const { setTheme, theme } = useTheme();
   return (
     <Tabs
-      defaultValue={theme}
+      defaultValue={"light"}
       className="flex flex-col rounded-full overflow-hidden"
     >
       <TabsList className="flex flex-col items-stretch justify-stretch flex-1">

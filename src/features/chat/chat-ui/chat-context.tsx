@@ -6,6 +6,7 @@ import { UseChatHelpers, useChat } from "ai/react";
 import React, { FC, createContext, useState } from "react";
 import {
   ChatMessageModel,
+  ChatModel,
   ChatThreadModel,
   ChatType,
   ConversationStyle,
@@ -29,6 +30,7 @@ interface ChatContextProps extends UseChatHelpers {
   fileState: FileState;
   onChatTypeChange: (value: ChatType) => void;
   onConversationStyleChange: (value: ConversationStyle) => void;
+  onChatModelChange: (value: ChatModel) => void;
   speech: TextToSpeechProps & SpeechToTextProps;
 }
 
@@ -55,6 +57,7 @@ export const ChatProvider: FC<Prop> = (props) => {
 
   const [chatBody, setBody] = useState<PromptGPTBody>({
     id: props.chatThread.id,
+    chatModel: props.chatThread.chatModel,
     chatType: props.chatThread.chatType,
     conversationStyle: props.chatThread.conversationStyle,
     chatOverFileName: props.chatThread.chatOverFileName,
@@ -91,6 +94,11 @@ export const ChatProvider: FC<Prop> = (props) => {
     setChatBody({ ...chatBody, conversationStyle: value });
   };
 
+  const onChatModelChange = (value: ChatModel) => {
+    setChatBody({ ...chatBody, chatModel: value });
+  };
+
+  
   function onError(error: Error) {
     showError(error.message, response.reload);
   }
@@ -103,6 +111,7 @@ export const ChatProvider: FC<Prop> = (props) => {
         chatBody,
         onChatTypeChange,
         onConversationStyleChange,
+        onChatModelChange,
         fileState,
         id: props.id,
         speech: {

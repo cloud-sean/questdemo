@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useChatContext } from "../chat-context";
+import IndexList from "./index-maker"
 
-const options = [
+export const ChatIndexUI: FC = () => {
+ 
+
+  
+  const options = [
     { value: "HRDOCS", label: "HR Documents" },
     { value: "option2", label: "Option 2" },
     { value: "option3", label: "Option 3" },
-];
-
-export const ChatIndexUI: FC = () => {
+  ];
+ 
     const { id } = useChatContext();
 
     const [selectedOption, setSelectedOption] = useState("");
