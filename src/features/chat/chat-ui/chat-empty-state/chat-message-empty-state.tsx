@@ -5,7 +5,7 @@ import { useChatContext } from "../chat-context";
 import { ChatFileUI } from "../chat-file/chat-file-ui";
 import { ChatStyleSelector } from "./chat-style-selector";
 import { ChatTypeSelector } from "./chat-type-selector";
-
+import { ChatIndexUI } from "../chat-file/chat-index-ui";
 interface Prop {}
 
 export const ChatMessageEmptyState: FC<Prop> = (props) => {
@@ -40,6 +40,7 @@ export const ChatMessageEmptyState: FC<Prop> = (props) => {
           <ChatTypeSelector disable={false} />
         </div>
         {showFileUpload === "data" && <ChatFileUI />}
+        {showFileUpload === "idx" && <ChatIndexUI />}
       </Card>
     </div>
   );

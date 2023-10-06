@@ -17,7 +17,7 @@ export interface ChatMessageModel {
 }
 
 export type ConversationStyle = "creative" | "balanced" | "precise";
-export type ChatType = "simple" | "data" | "mssql";
+export type ChatType = "simple" | "data" | "mssql" | "idx";
 
 export type ChatRole = "system" | "user" | "assistant" | "function";
 
